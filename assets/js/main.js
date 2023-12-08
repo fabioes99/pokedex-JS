@@ -28,22 +28,22 @@ function mountModal(type, pokemonInfo, abilitiesConcat, genderRate, eggGroup){
     const percentRateFemale = (genderRate/8)*100;
     const percentRateMale = 100 - percentRateFemale;
     return `<div class="modal-body ${type}" style="padding: 0;">
-    <div style=" color: whitesmoke; height: 275px; display: flex; justify-content: space-between; ">
-        <div style="padding: 20px 25px;">
+    <div class="modal-top" >
+        <div class="pokemon-name" >
             <h3 style="text-transform: capitalize;">${pokemonInfo.name}</h3>
-            <span style="padding: .25rem .5rem;margin: .25rem 0;font-size: 0.9rem;border-radius: 1rem;filter: brightness(1.1);text-align: center;">tipos</span>
+            <span class="types">tipos</span>
         </div>
-        <div style="margin: 35px;font-size: 21px;font-weight: bolder;">
+        <div class="pokemon-id" >
             <span>#${pokemonInfo.id}</span>
         </div>
     </div>
-    <div style=" border-top-left-radius: 30px; border-top-right-radius: 30px; background-color: white; padding-top: 55px;padding-bottom: 10px;padding-left: 30px;">
-        <div style=" display: flex;align-items: center;justify-content: center;">
-            <img style="margin-left:40px ; position: absolute; top: 75px;width: 215px;" src="${pokemonInfo.sprites.other.dream_world.front_default}" alt="">
+    <div class="modal-bottom">
+        <div class="div-img" >
+            <img class="image" src="${pokemonInfo.sprites.other.dream_world.front_default}" alt="">
         </div>
         <h3>About</h3>
-        <div style="display: flex;">
-            <div style="width: 42%;">
+        <div class="pokemon-info" >
+            <div class="info" >
                 <p>Height</p>
                 <p>Weight</p>
                 <p>Abilities</p>
@@ -56,11 +56,10 @@ function mountModal(type, pokemonInfo, abilitiesConcat, genderRate, eggGroup){
            
         </div>
         <h3>Breeding</h3>
-        <div style="display: flex;">
-            <div style="width: 42%;">
+        <div class="pokemon-info" >
+            <div class="info" >
                 <p>Gender</p>
                 <p>Eggg Groups</p>
-               
             </div>
             <div>
                 <p>Female ${percentRateFemale}% Male ${percentRateMale}% </p>
