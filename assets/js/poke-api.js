@@ -23,13 +23,34 @@ pokeApi.getPokemonDetail = (pokemon) => {
         .then(convertPokeApiDetailToPokemon)
 }
 
+pokeApi.getSpeciesInfo = (number) => {
+    const url = `https://pokeapi.co/api/v2/pokemon-species/`+number;
+    return fetch(url)
+    .then((response) => response.json())
+}
+
+pokeApi.getSpecificPokemon = (number) => {
+    const url = `https://pokeapi.co/api/v2/pokemon/`+number;
+    return fetch(url)
+    .then((response) => response.json())
+}
+
 pokeApi.getPokemons = (offset = 0, limit = 5) => {
     const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 
     return fetch(url)
         .then((response) => response.json())
         .then((jsonBody) => jsonBody.results)
-        .then((pokemons) => pokemons.map(pokeApi.getPokemonDetail))
+        .then((pokemons) => pokemons.map(pokeApi.getPokemonDetail) )
         .then((detailRequests) => Promise.all(detailRequests))
-        .then((pokemonsDetails) => pokemonsDetails)
+        .then((pokemonsDetails) => {
+            var novaLista = [];
+            
+            pokemonsDetails.forEach(objeto => {
+              var numero = objeto.number;
+              novaLista[numero] = objeto;
+            });
+            
+            return novaLista;
+        })
 }
