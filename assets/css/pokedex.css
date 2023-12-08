@@ -96,12 +96,18 @@
 }
 
 .modal-top .pokemon-name .types {
-    padding: .25rem .5rem;
-    margin: .25rem 0;
+    
     font-size: 0.9rem;
     border-radius: 1rem;
     filter: brightness(1.1);
     text-align: center;
+}
+
+.modal-top .pokemon-name .types .teste{
+    margin: 15px;
+    border-radius: 10px;
+    padding: .15rem .5rem;
+    width: 5.5rem;
 }
 
 .modal-bottom {

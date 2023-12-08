@@ -13,25 +13,28 @@ function convertPokemonToLi(pokemon) {
             <span class="name">${pokemon.name}</span>
 
             <div class="detail">
-                <ol class="types">
-                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
-                </ol>
-
-                <img src="${pokemon.photo}"
-                     alt="${pokemon.name}">
+                <div class="types">
+                    ${pokemon.types.map((type) => `<div class="type ${type}">${type}</div>`).join('')}
+                </div>
+                <div style="margin-left:40px">
+                    <img src="${pokemon.photo}" alt="${pokemon.name}">
+                </div>
             </div>
         </button>
     `
 }
 
-function mountModal(type, pokemonInfo, abilitiesConcat, genderRate, eggGroup){
+function mountModal(type, pokemonInfo, abilitiesConcat, genderRate, eggGroup, types){
+    console.log(types);
     const percentRateFemale = (genderRate/8)*100;
     const percentRateMale = 100 - percentRateFemale;
     return `<div class="modal-body ${type}" style="padding: 0;">
     <div class="modal-top" >
         <div class="pokemon-name" >
             <h3 style="text-transform: capitalize;">${pokemonInfo.name}</h3>
-            <span class="types">tipos</span>
+            <span class="types"> 
+                ${types.map((type) => `<div class="teste ${type.type.name}">${type.type.name}</div>`).join('')}
+            </span>
         </div>
         <div class="pokemon-id" >
             <span>#${pokemonInfo.id}</span>
@@ -91,7 +94,7 @@ function loadPokemonItens(offset, limit) {
                         const eggGroup = speciesInfo.egg_groups.map(objeto => objeto.name).join(', ');            
                         const abilities = pokemonInfo.abilities.map(objeto => objeto.ability.name).join(', ');
                         const type = pokemonInfo.types[0].type.name;
-                        let modalContent = mountModal(type, pokemonInfo, abilities, genderRate, eggGroup);
+                        let modalContent = mountModal(type, pokemonInfo, abilities, genderRate, eggGroup, pokemonInfo.types);
                         modalPokemon.innerHTML = modalContent;
                         
                        } )
